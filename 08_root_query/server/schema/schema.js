@@ -19,8 +19,8 @@ const RootQuery = new GraphQLObjectType({
             type: BookType,
             args: {id: {type: GraphQLString} },
             resolve(parent, args) {
-                // args.id
                 // code to get data from db/other source
+                // args.id
             }
         }
     }

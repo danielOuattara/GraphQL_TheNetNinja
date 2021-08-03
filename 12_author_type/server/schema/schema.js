@@ -16,7 +16,7 @@ const {
 const books = [
     { name: "Name of the wind", genre: "Fantasy", id: "1", pages: "230" },
     { name: "The final empire", genre: "Fantasy", id: "2", pages: "340" },
-    { name: "The long earth", genre: "Sci-Fi", id: "3", pages: "120" },
+    { name: "The long earth",   genre: "Sci-Fi",  id: "3",  pages: "120" },
 ];
 
 const authors = [
@@ -61,7 +61,6 @@ const RootQuery = new GraphQLObjectType({
             type: AuthorType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                // args.id
                 // code to get data from db/other source
                 return _.find(authors, { id: args.id });
             }

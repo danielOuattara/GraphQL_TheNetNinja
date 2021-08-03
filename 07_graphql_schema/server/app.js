@@ -4,6 +4,7 @@ const { graphqlHTTP } = require("express-graphql");
 // const graphqlHTTP = require("express-graphql").graphqlHTTP; // same as above
 const app = express();
 
+
 app.use("/graphql", graphqlHTTP({}));
 
 app.listen(4000, () => {
