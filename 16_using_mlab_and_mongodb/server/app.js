@@ -5,7 +5,11 @@ const schema = require(("./schema/schema.js"));
 const mongoose = require("mongoose");
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false");
+mongoose.connect("mongodb://localhost:27017/graphql_the_net_ninja",
+    {useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log("* * * ! Success: Database connected !  * * * "))
+.catch(err => console.log(err.message));
+
 mongoose.connection.once("open", () => {
     console.log("Connnected to database !")
 })
@@ -14,6 +18,11 @@ app.use("/graphql", graphqlHTTP({
     schema,
     graphiql: true
 }));
+
+app.use("/",  (req, res) => {
+    res.send(200).json({message: "Successfull"})
+
+});
 
 
 app.listen(4000, () => {

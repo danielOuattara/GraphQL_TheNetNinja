@@ -2,8 +2,8 @@
 const graphql = require("graphql");
 const _ = require("lodash");
 
-const Book  = require("./../models/book.js");
-const Author = require("./../models/book.js");
+const Book = require("./../models/book.js");
+const Author = require("./../models/author.js");
 
 const {
     GraphQLObjectType,
@@ -39,7 +39,7 @@ const BookType = new GraphQLObjectType({
         id: { type: GraphQLID },
         title:  { type: GraphQLString },
         genre:  { type: GraphQLString },
-        pages:  { type: GraphQLString },
+        pages:  { type: GraphQLInt },
         author: { 
             type: AuthorType,
             resolve(parent, args) {

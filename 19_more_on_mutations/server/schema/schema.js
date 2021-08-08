@@ -3,7 +3,7 @@ const graphql = require("graphql");
 const _ = require("lodash");
 
 const Book  = require("./../models/book.js");
-const Author = require("./../models/book.js");
+const Author = require("./../models/author.js");
 
 const {
     GraphQLObjectType,
@@ -36,10 +36,10 @@ const {
 const BookType = new GraphQLObjectType({
     name: "Book",
     fields: () => ({
-        id: { type: GraphQLID },
+        id:     { type: GraphQLID },
         title:  { type: GraphQLString },
         genre:  { type: GraphQLString },
-        pages:  { type: GraphQLString },
+        pages:  { type: GraphQLInt },
         author: { 
             type: AuthorType,
             resolve(parent, args) {
@@ -53,10 +53,10 @@ const BookType = new GraphQLObjectType({
 const AuthorType = new GraphQLObjectType({
     name: "Author",
     fields: () => ({
-        id: { type: GraphQLID },
+          id: { type: GraphQLID },
         name: { type: GraphQLString },
-        age: { type: GraphQLInt },
-        books: {
+         age: { type: GraphQLInt },
+       books: {
             type: GraphQLList(BookType),
             resolve(parent, args) {
                 // console.log(" parent = ", parent);
@@ -106,11 +106,13 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+
+// INFO :  => mutation = CRUD on data
 const Mutation = new GraphQLObjectType ({
     name: "Mutation",
     fields: {
         addAuthor: {
-            type: Author,
+            type: AuthorType,
             args: {
                 name: { type: GraphQLString},
                 age: { type: GraphQLInt}
@@ -123,7 +125,27 @@ const Mutation = new GraphQLObjectType ({
 
                 return author.save();
             }
-        }
+        },
+
+        addBook: {
+            type: BookType,
+            args: {
+                title: { type: GraphQLString},
+                genre: { type: GraphQLString},
+                authorId: { type: GraphQLID},
+                pages: { type: GraphQLInt}
+            }, 
+            resolve(parent, args) {
+                let book = new Book({
+                    title: args.title,
+                    pages: args.pages,
+                    genre: args.genre,
+                    authorId: args.authorId
+                });
+
+                return book.save();
+            }
+        },
     }
 })
 
