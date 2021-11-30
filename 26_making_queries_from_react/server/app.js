@@ -5,10 +5,10 @@ const schema = require(("./schema/schema.js"));
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+
 const app = express();
 
 // allow CORS
-
 app.use(cors());
 
 mongoose.connect("mongodb://localhost:27017/graphql_the_net_ninja",

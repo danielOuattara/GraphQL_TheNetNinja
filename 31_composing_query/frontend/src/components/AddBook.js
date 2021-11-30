@@ -1,9 +1,8 @@
 
-
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import { flowRight as compose } from 'lodash';
-import { getAuthorsQuery, addBookMutation} from "./../queries/queries";
+import { getAuthorsQuery, addBookMutation } from "./../queries/queries";
 
 class AddBook extends Component {
 
@@ -29,8 +28,9 @@ class AddBook extends Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        // console.log(this.state);
-        this.props.addBookMutation();
+        this.props.addBookMutation()
+        .then( () => console.log('Success'))
+        .catch(error => console.log(error.message))
     }
 
     render() {
@@ -38,14 +38,16 @@ class AddBook extends Component {
             <form id="add-book" onSubmit= {this.submitForm.bind(this)}>
                 <div className="field">
                     <label htmlFor="bookName">Book Title : </label>
-                    <input type="text" 
-                           onChange= { (event) => this.setState({ title: event.target.value})}/>
+                    <input 
+                      type="text" 
+                      onChange= { (event) => this.setState({ title: event.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label htmlFor="genre">Genre : </label>
-                    <input type="text"
-                           onChange={(event) => this.setState({ genre: event.target.value })} />
+                    <input 
+                      type="text"
+                      onChange={(event) => this.setState({ genre: event.target.value })} />
                 </div>
 
                 <div className="field">
@@ -59,7 +61,7 @@ class AddBook extends Component {
 
                 <button> Add </button>
             </form>
-        )
+        );
     }
 }
 

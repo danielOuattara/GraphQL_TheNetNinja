@@ -1,5 +1,4 @@
 
-
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import { getAuthorsQuery} from "./../queries/queries";
@@ -13,7 +12,7 @@ class AddBook extends Component {
             genre: "",
             authorId: ""
         }
-
+        this.submitForm = this.submitForm.bind(this);
     }
 
     displayAuthor = () => {
@@ -34,29 +33,37 @@ class AddBook extends Component {
 
     render() {
         return (
-            <form id="add-book" onSubmit= {this.submitForm.bind(this)}>
+            <form id="add-book" onSubmit= {this.submitForm}>
                 <div className="field">
-                    <label htmlFor="bookName">Book Title : </label>
-                    <input type="text" 
-                           onChange= { (event) => this.setState({ title: event.target.value})}/>
+                    <label htmlFor="bookName">Book Title : 
+                        <input 
+                          type="text" 
+                          onChange= { (event) => this.setState({ title: event.target.value})}
+                          required
+                        />
+                    </label>
                 </div>
 
                 <div className="field">
-                    <label htmlFor="genre">Genre : </label>
-                    <input type="text"
-                           onChange={(event) => this.setState({ genre: event.target.value })} />
+                    <label htmlFor="genre">Genre : 
+                        <input 
+                          type="text"
+                          onChange={(event) => this.setState({ genre: event.target.value })} 
+                          required
+                        />
+                    </label>
                 </div>
 
                 <div className="field">
                     <label htmlFor="author">Author : </label>
-                    <select name="" id=""
+                    <select name="" id="" required
                             onChange={(event) => this.setState({ author: event.target.value })}>
-                        <option value="">Select Author </option>
+                        <option value="">Select An Author </option>
                         {this.displayAuthor()}
                     </select>
                 </div>
 
-                <button> Add </button>
+                <button> Add Book </button>
             </form>
         )
     }

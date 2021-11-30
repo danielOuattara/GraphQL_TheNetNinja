@@ -8,8 +8,7 @@ export default class BookList extends Component {
                 <ul id="book-list">
                     <li>Book name</li>
                 </ul>
-                
             </div>
-        )
+        );
     }
 }

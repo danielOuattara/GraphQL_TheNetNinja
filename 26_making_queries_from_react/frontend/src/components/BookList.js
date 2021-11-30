@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
-import {gql} from "apollo-boost";
-import {graphql} from "react-apollo";
+import { gql } from "apollo-boost";
+import { graphql } from "react-apollo";
+
+
 
 const getBooksQuery = gql`
     {
@@ -9,9 +11,7 @@ const getBooksQuery = gql`
             title
             id
         }
-    }
-
-`
+    }`
 
  class BookList extends Component {
     render() {
@@ -21,10 +21,9 @@ const getBooksQuery = gql`
                 <ul id="book-list">
                     <li>Book name</li>
                 </ul>
-                
             </div>
-        )
+        );
     }
 }
-
 export default graphql(getBooksQuery)(BookList);
+        // use grahql to bind getBookQuery to BookList component

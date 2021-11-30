@@ -1,11 +1,8 @@
-
-
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import { getAuthorsQuery} from "./../queries/queries";
+import { getAuthorsQuery } from "./../queries/queries";
 
 class AddBook extends Component {
-
 
     displayAuthor = () => {
         let data = this.props.data;
@@ -16,7 +13,6 @@ class AddBook extends Component {
                 return (<option key={author.id} value={author.id}>{author.name}</option>);
             });
         }
-
     }
 
     render() {
@@ -45,5 +41,4 @@ class AddBook extends Component {
         )
     }
 }
-
 export default graphql(getAuthorsQuery)(AddBook);

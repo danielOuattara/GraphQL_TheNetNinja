@@ -1,9 +1,8 @@
 
 const graphql = require("graphql");
 const _ = require("lodash");
-
-const Book = require("./../models/book.js");
-const Author = require("./../models/author.js");
+const Book = require("./../models/bookModel.js");
+const Author = require("./../models/authorModel.js");
 
 const {
     GraphQLObjectType,
@@ -16,7 +15,7 @@ const {
 } = graphql;
 
 
-// dummy data
+// // dummy data
 // const books = [
 //     { title: "Name of the wind", genre: "Fantasy",  id: "1", pages: "230", authorId: "1" },
 //     { title: "The final empire", genre: "Fantasy",  id: "2", pages: "340", authorId: "2" },

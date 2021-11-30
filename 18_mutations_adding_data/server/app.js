@@ -1,9 +1,9 @@
-
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require(("./schema/schema.js"));
 const mongoose = require("mongoose");
 const app = express();
+
 
 mongoose.connect("mongodb://localhost:27017/graphql_the_net_ninja",
     { useNewUrlParser: true, useUnifiedTopology: true })
@@ -12,7 +12,7 @@ mongoose.connect("mongodb://localhost:27017/graphql_the_net_ninja",
 
 mongoose.connection.once("open", () => {
     console.log("Connnected to database !")
-})
+});
 
 app.use("/graphql", graphqlHTTP({
     schema,
@@ -21,10 +21,9 @@ app.use("/graphql", graphqlHTTP({
 
 app.use("/", (req, res) => {
     res.sendStatus(200).json({ message: "Successfull" })
-
 });
 
 
 app.listen(4000, () => {
     console.log("Listening on port 4000 ! GraphQL")
-})
+});

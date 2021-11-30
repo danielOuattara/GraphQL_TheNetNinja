@@ -9,7 +9,7 @@ const {GraphQLObjectType, GraphQLString, GraphQLSchema} = graphql;
 const books = [
     {name:"Name of the wind", genre:"Fantasy", id:"1"},
     {name:"The final empire", genre:"Fantasy", id:"2"},
-    {name:"The long earth", genre:"Sci-Fi", id:"3"},
+    {name:"The long earth",   genre:"Sci-Fi",  id:"3"},
 ];
 
 const BookType = new GraphQLObjectType({
