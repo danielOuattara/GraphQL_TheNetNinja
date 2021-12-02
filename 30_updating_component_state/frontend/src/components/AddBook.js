@@ -1,16 +1,14 @@
-
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import { getAuthorsQuery} from "./../queries/queries";
 
 class AddBook extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             title: "",
             genre: "",
-            authorId: ""
+            authorId: "",
         }
         this.submitForm = this.submitForm.bind(this);
     }
@@ -38,8 +36,9 @@ class AddBook extends Component {
                     <label htmlFor="bookName">Book Title : 
                         <input 
                           type="text" 
-                          onChange= { (event) => this.setState({ title: event.target.value})}
+                          onChange= {(event) => this.setState({ title: event.target.value})}
                           required
+                          value={this.state.title}
                         />
                     </label>
                 </div>
@@ -50,6 +49,7 @@ class AddBook extends Component {
                           type="text"
                           onChange={(event) => this.setState({ genre: event.target.value })} 
                           required
+                          value={this.state.genre}
                         />
                     </label>
                 </div>

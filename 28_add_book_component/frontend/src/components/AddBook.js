@@ -9,7 +9,8 @@ const getAuthorsQuery = gql`
             name
             id
         }
-    }`// < -- caution on left: do not delete
+    }
+`;  // < -- caution on left: do not delete
 
 
 class AddBook extends Component {
@@ -29,10 +30,14 @@ class AddBook extends Component {
         return (
             <form id="add-book">
                 <div className="field">
-                    <label htmlFor="bookName">Book Name : <input type="text" id="bookName" name="bookName" /> </label>
+                    <label htmlFor="bookName">Book Name : 
+                        <input type="text" id="bookName" name="bookName" /> 
+                    </label>
                 </div>
                 <div className="field">
-                    <label htmlFor="genre">Genre : <input type="text" id="genre" name="genre" /> </label>
+                    <label htmlFor="genre">Genre : 
+                        <input type="text" id="genre" name="genre" /> 
+                    </label>
                 </div>
 
                 <div className="field">
@@ -43,7 +48,7 @@ class AddBook extends Component {
                     </select>
                 </div>
 
-                <button> + </button>
+                <button>Add Book</button>
             </form>
         );
     }

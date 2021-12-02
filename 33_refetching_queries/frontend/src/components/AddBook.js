@@ -1,7 +1,9 @@
+
+
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import { flowRight as compose } from 'lodash';
-import { getAuthorsQuery, addBookMutation } from "./../queries/queries";
+import { getAuthorsQuery, addBookMutation, getBooksQuery} from "./../queries/queries";
 
 class AddBook extends Component {
 
@@ -10,10 +12,10 @@ class AddBook extends Component {
         this.state = {
             title: "",
             genre: "",
-            authorId: ""
+            authorId: "",
+            pages:""
         }
     }
-    
 
     displayAuthor = () => {
         let data = this.props.getAuthorsQuery;
@@ -28,32 +30,48 @@ class AddBook extends Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        this.props.addBookMutation()
-        .then( () => console.log('Success'))
-        .catch(error => console.log(error.message))
+        console.log(this.state);
+        this.props.addBookMutation( {
+            variables: {
+                title: this.state.title,
+                genre: this.state.genre,
+                pages: Number(this.state.pages),
+                authorId: this.state.authorId,
+            }, 
+            refetchQueries: [{query: getBooksQuery}]  // fetch again all books after adding one book
+        })
+        .then(() => console.log('Success'))
+        .catch(error => console.log(error.message));
     }
 
-    render() { 
+    render() {
         return (
             <form id="add-book" onSubmit= {this.submitForm.bind(this)}>
                 <div className="field">
                     <label htmlFor="bookName">Book Title : </label>
                     <input 
-                      type="text" 
-                      onChange= { (event) => this.setState({ title: event.target.value})}/>
+                       type="text" 
+                       onChange= { (event) => this.setState({ title: event.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label htmlFor="genre">Genre : </label>
                     <input 
-                      type="text"
-                      onChange={(event) => this.setState({ genre: event.target.value })} />
+                        type="text"
+                        onChange={(event) => this.setState({ genre: event.target.value })} />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="genre">Pages : </label>
+                    <input 
+                        type="number" min="1"
+                        onChange={(event) => this.setState({ pages: event.target.value })} />
                 </div>
 
                 <div className="field">
                     <label htmlFor="author">Author : </label>
                     <select name="" id=""
-                            onChange={(event) => this.setState({ author: event.target.value })}>
+                            onChange={(event) => this.setState({ authorId: event.target.value })}>
                         <option value="">Select Author </option>
                         {this.displayAuthor()}
                     </select>

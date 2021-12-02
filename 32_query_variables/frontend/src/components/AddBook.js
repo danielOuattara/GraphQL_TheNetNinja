@@ -30,14 +30,17 @@ class AddBook extends Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        // console.log(this.state);
+        console.log(this.state);
         this.props.addBookMutation( {
             variables: {
                 title: this.state.title,
                 genre: this.state.genre,
-                authorId: this.state.authorId
+                pages: Number(this.state.pages),
+                authorId: this.state.authorId,
             }
-        });
+        })
+        .then(() => console.log('Success'))
+        .catch(error => console.log(error.message));
     }
 
     render() {
@@ -45,20 +48,29 @@ class AddBook extends Component {
             <form id="add-book" onSubmit= {this.submitForm.bind(this)}>
                 <div className="field">
                     <label htmlFor="bookName">Book Title : </label>
-                    <input type="text" 
-                           onChange= { (event) => this.setState({ title: event.target.value})}/>
+                    <input 
+                       type="text" 
+                       onChange= { (event) => this.setState({ title: event.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label htmlFor="genre">Genre : </label>
-                    <input type="text"
-                           onChange={(event) => this.setState({ genre: event.target.value })} />
+                    <input 
+                        type="text"
+                        onChange={(event) => this.setState({ genre: event.target.value })} />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="genre">Pages : </label>
+                    <input 
+                        type="number" min="1"
+                        onChange={(event) => this.setState({ pages: event.target.value })} />
                 </div>
 
                 <div className="field">
                     <label htmlFor="author">Author : </label>
                     <select name="" id=""
-                            onChange={(event) => this.setState({ author: event.target.value })}>
+                            onChange={(event) => this.setState({ authorId: event.target.value })}>
                         <option value="">Select Author </option>
                         {this.displayAuthor()}
                     </select>
@@ -66,7 +78,7 @@ class AddBook extends Component {
 
                 <button> Add </button>
             </form>
-        )
+        );
     }
 }
 
