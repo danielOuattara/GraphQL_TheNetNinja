@@ -6,16 +6,14 @@ import { getOneBookQuery} from "./../queries/queries";
  class BookDetails extends Component {
 
     displayBookDetails = () => {
-
         const { book } = this.props.data;
         if(book) {
             return(
                 <div>
-                    <h2>Book infos </h2>
-                    <p>{book.title}</p>
+                    <h2>{book.title} </h2>
                     <p>{book.pages}</p>
                     <p>{book.genre}</p>
-                    <p>{book.author}</p>
+                    <p>{book.author.name}</p>
         
                     <h2>All Books from the same Author</h2>
                     <ul className="other-books">
@@ -38,7 +36,7 @@ import { getOneBookQuery} from "./../queries/queries";
             
             <div id="book-details">
                <p>Output book details here !</p>
-               {/* {this.displayBookDetails()} */}
+               {this.displayBookDetails()}
             </div>
         );
     }

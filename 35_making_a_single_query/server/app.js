@@ -27,10 +27,8 @@ app.use("/graphql", graphqlHTTP({
 
 app.use("/", (req, res) => {
     res.sendStatus(200).json({ message: "Successfull" })
-
 });
-
 
 app.listen(4000, () => {
     console.log("Listening on port 4000 ! GraphQL")
-})
+});

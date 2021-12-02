@@ -43,7 +43,7 @@ const addBookMutation = gql`
 `;
 
 const getOneBookQuery = gql `
-    query($id: ID!){
+    query($id: ID){
         book(id:$id) {
             id
             title

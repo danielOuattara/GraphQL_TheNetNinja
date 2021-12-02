@@ -19,7 +19,8 @@ import BookDetails from './BookDetails';
         } else {
             return data.books.map(book => {
                 return (
-                    <li key={ book.id} onClick={(event) => {this.setState({selected: book.id})}}>{ book.title}</li>);
+                    <li key={book.id} onClick={(event) => {this.setState({selected: book.id})}}>{ book.title}</li>
+                );
             });
         }
     }
