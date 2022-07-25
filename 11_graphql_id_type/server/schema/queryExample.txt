@@ -1,0 +1,7 @@
+{
+  book(id:2) {
+    name
+    genre
+    pages
+  }
+}
