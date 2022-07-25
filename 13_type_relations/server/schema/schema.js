@@ -9,8 +9,6 @@ const {
   GraphQLInt,
 } = graphql;
 
-
-
 //--------------------------------------------------
 const BookType = new GraphQLObjectType({
   name: "Book",
