@@ -1,5 +1,4 @@
-
-import {Component} from "react";
+import { Component } from "react";
 import BookList from "./components/BookList";
 
 export default class App extends Component {
@@ -12,4 +11,3 @@ export default class App extends Component {
     );
   }
 }
-
