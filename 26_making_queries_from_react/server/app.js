@@ -3,8 +3,11 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema.js");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 //-------------------------------------------------------
+
+app.use(cors());
 
 app.use(
   "/graphql",
@@ -30,7 +33,7 @@ mongoose
       `* * * ! Success: Database connected to:  ${process.env.DATABASE} database * * * `
     );
     app.listen(4000, () => {
-      console.log("Listening on port 4000 ! GraphQL");
+      console.log("Listening on http://localhost:4000/graphql");
     });
   })
   .catch((err) => console.log(err.message));
