@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { graphql } from "@apollo/client/react/hoc";
 import { gql } from "@apollo/client";
 //--------------------------------------------------------
+
 const GETBOOKS = gql`
   {
     books {
