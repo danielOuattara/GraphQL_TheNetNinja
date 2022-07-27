@@ -15,7 +15,7 @@ app.use(
 );
 
 app.use("/", (req, res) => {
-  res.send(200).json({ message: "Successfull" });
+  res.status(200).json({ message: "Successfull" });
 });
 
 //-------------------------------------------------------
@@ -30,7 +30,7 @@ mongoose
       `* * * ! Success: Database connected to:  ${process.env.DATABASE} database * * * `
     );
     app.listen(4000, () => {
-      console.log("Listening on port 4000 ! GraphQL");
+      console.log("Listening on http://localhost:4000/graphql?");
     });
   })
   .catch((err) => console.log(err.message));
