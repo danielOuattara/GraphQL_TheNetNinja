@@ -1,57 +1,63 @@
+import { Component } from "react";
+import { graphql } from "@apollo/client/react/hoc";
+import { gql } from "@apollo/client";
+//--------------------------------------------------------
 
-import React, { Component } from 'react';
-import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
-
-const getAuthorsQuery = gql`
-    {
-        authors {
-            name
-            id
-        }
+const GETAUTHORS = gql`
+  {
+    authors {
+      name
+      id
     }
-`;  // < -- caution on left: do not delete
-
+  }
+`;
 
 class AddBook extends Component {
-
-    displayAuthors = () => {
-        let data = this.props.data;
-        if (data.loading) {
-            return (<option disabled>Loading Books ...</option>);
-        } else {
-            return data.authors.map(author => {
-                return (<option key={author.id} value={author.id}>{author.name}</option>);
-            });
-        }
-    }
-
-    render() {
+  displayAuthors = () => {
+    let data = this.props.data;
+    if (data.loading) {
+      return <option disabled>Loading Books ...</option>;
+    } else {
+      return data.authors.map((author) => {
         return (
-            <form id="add-book">
-                <div className="field">
-                    <label htmlFor="bookName">Book Name : 
-                        <input type="text" id="bookName" name="bookName" /> 
-                    </label>
-                </div>
-                <div className="field">
-                    <label htmlFor="genre">Genre : 
-                        <input type="text" id="genre" name="genre" /> 
-                    </label>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="author">Author : </label>
-                    <select name="" id="">
-                        <option value="">Select Author </option>
-                        {this.displayAuthors()}
-                    </select>
-                </div>
-
-                <button>Add Book</button>
-            </form>
+          <option key={author.id} value={author.id}>
+            {author.name}
+          </option>
         );
+      });
     }
+  };
+
+  render() {
+    return (
+      <form id="add-book">
+        <div className="field">
+          <label htmlFor="bookName">
+            Book Name :
+            <input type="text" id="bookName" name="bookName" />
+          </label>
+        </div>
+
+        <div className="field">
+          <label htmlFor="genre">
+            Genre :
+            <input type="text" id="genre" name="genre" />
+          </label>
+        </div>
+
+        <div className="field">
+          <label htmlFor="author">Author : </label>
+          <select name="author" id="author">
+            <option value="">Select Author </option>
+            {this.displayAuthors()}
+          </select>
+        </div>
+
+        <button>Add Book</button>
+      </form>
+    );
+  }
 }
 
-export default graphql(getAuthorsQuery)(AddBook);
+export default graphql(GETAUTHORS)(AddBook);
+// use grahql to bind GETAUTHORS to AddBook component
