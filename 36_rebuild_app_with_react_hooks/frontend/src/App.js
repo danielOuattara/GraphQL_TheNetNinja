@@ -4,7 +4,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  gql,
+  // gql,
 } from "@apollo/client";
 import AddingBook from "./components/AddingBook";
 //-----------------------------------------------
@@ -16,23 +16,23 @@ const client = new ApolloClient({
 });
 
 // direct testing
-client
-  .query({
-    query: gql`
-      query GetBooks {
-        books {
-          id
-          title
-          author {
-            name
-            age
-          }
-        }
-      }
-    `,
-  })
+// client
+//   .query({
+//     query: gql`
+//       query GetBooks {
+//         books {
+//           id
+//           title
+//           author {
+//             name
+//             age
+//           }
+//         }
+//       }
+//     `,
+//   })
 
-  .then((result) => console.log(result));
+//   .then((result) => console.log(result));
 
 //------------------------------------------------
 function App() {

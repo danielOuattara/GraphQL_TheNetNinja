@@ -1,5 +1,4 @@
-import { graphql } from "@apollo/client/react/hoc";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 //------------------------------------------------------
 
 const GETBOOKS = gql`
@@ -11,24 +10,27 @@ const GETBOOKS = gql`
   }
 `;
 
-function BookList(props) {
-  const displayBooks = () => {
-    let data = props.data;
-    if (data.loading) {
-      return <div>Loading books ...</div>;
-    } else {
-      return data.books.map((book) => {
-        return <li key={book.id}>{book.title}</li>;
-      });
-    }
-  };
-  console.log(props); // <-- preview data here
+const DisplayBooks = () => {
+  const { loading, error, data } = useQuery(GETBOOKS);
+  if (error) {
+    return <div>Error ...</div>;
+  } else if (loading) {
+    return <div>Loading books ...</div>;
+  } else {
+    return data.books.map((book) => {
+      return <li key={book.id}>{book.title}</li>;
+    });
+  }
+};
+
+function BookList() {
   return (
     <div>
-      <ul id="book-list">{displayBooks()}</ul>
+      <ul id="book-list">
+        <DisplayBooks />
+      </ul>
     </div>
   );
 }
-
-// use grahql to bind GETBOOKS query to BookList component
-export default graphql(GETBOOKS)(BookList);
+// using grahql to bind GETBOOKS to BockList component is no more necessary
+export default BookList;

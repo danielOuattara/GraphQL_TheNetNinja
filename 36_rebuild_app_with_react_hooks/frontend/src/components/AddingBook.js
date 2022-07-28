@@ -1,5 +1,4 @@
-import { graphql } from "@apollo/client/react/hoc";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 //--------------------------------------------------------
 
 const GETAUTHORS = gql`
@@ -11,21 +10,24 @@ const GETAUTHORS = gql`
   }
 `;
 
-function AddingBook(props) {
-  const displayAuthors = () => {
-    let data = props.data;
-    if (data.loading) {
-      return <option disabled>Loading Books ...</option>;
-    } else {
-      return data.authors.map((author) => {
-        return (
-          <option key={author.id} value={author.id}>
-            {author.name}
-          </option>
-        );
-      });
-    }
-  };
+const DisplayAuthors = () => {
+  const { loading, error, data } = useQuery(GETAUTHORS);
+  if (error) {
+    return <div>Error ...</div>;
+  } else if (loading) {
+    return <option disabled>Loading Books ...</option>;
+  } else {
+    return data.authors.map((author) => {
+      return (
+        <option key={author.id} value={author.id}>
+          {author.name}
+        </option>
+      );
+    });
+  }
+};
+
+function AddingBook() {
   return (
     <form id="add-book">
       <div className="field">
@@ -46,7 +48,7 @@ function AddingBook(props) {
         <label htmlFor="author">Author : </label>
         <select name="author" id="author">
           <option value="">Select Author </option>
-          {displayAuthors()}
+          <DisplayAuthors />
         </select>
       </div>
 
@@ -54,5 +56,5 @@ function AddingBook(props) {
     </form>
   );
 }
-// use grahql to bind GETAUTHORS to AddBook component
-export default graphql(GETAUTHORS)(AddingBook);
+// using grahql to bind GETAUTHORS to AddBook component is no more necessary
+export default AddingBook;
