@@ -1,7 +1,47 @@
 import "./App.css";
+import BookList from "./components/BookList";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from "@apollo/client";
+//-----------------------------------------------
 
+// appolo client setting up
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
+});
+
+client
+  .query({
+    query: gql`
+      query GetBooks {
+        books {
+          id
+          title
+          author {
+            name
+            age
+          }
+        }
+      }
+    `,
+  })
+
+  .then((result) => console.log(result));
+
+//------------------------------------------------
 function App() {
-  return <div className="App"></div>;
+  return (
+    <ApolloProvider client={client}>
+      <div id="main">
+        <h1> Ninja's Reading List </h1>
+        <BookList />
+      </div>
+    </ApolloProvider>
+  );
 }
 
 export default App;
