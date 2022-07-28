@@ -1,14 +1,7 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GETAUTHORS } from "./../queries/queries";
+import { useState } from "react";
 //--------------------------------------------------------
-
-const GETAUTHORS = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`;
 
 const DisplayAuthors = () => {
   const { loading, error, data } = useQuery(GETAUTHORS);
@@ -28,25 +21,65 @@ const DisplayAuthors = () => {
 };
 
 function AddingBook() {
+  const [newBook, setnewBook] = useState({
+    title: "",
+    genre: "",
+    authorId: "",
+    pages: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setnewBook({ ...newBook, [name]: value }); // gathering person data from inputs
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(newBook);
+    setnewBook({ title: "", genre: "", authorId: "", pages: "" });
+  };
   return (
-    <form id="add-book">
+    <form id="add-book" onSubmit={handleSubmit}>
       <div className="field">
-        <label htmlFor="bookName">
-          Book Name :
-          <input type="text" id="bookName" name="bookName" />
+        <label htmlFor="title">
+          Title :
+          <input
+            type="text"
+            id="title"
+            name="title"
+            onChange={handleChange}
+          />
         </label>
       </div>
 
       <div className="field">
         <label htmlFor="genre">
           Genre :
-          <input type="text" id="genre" name="genre" />
+          <input
+            type="text"
+            id="genre"
+            name="genre"
+            onChange={handleChange}
+          />
         </label>
       </div>
 
       <div className="field">
-        <label htmlFor="author">Author : </label>
-        <select name="author" id="author">
+        <label htmlFor="pages">
+          Pages :
+          <input
+            type="number"
+            id="pages"
+            name="pages"
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+
+      <div className="field">
+        <label htmlFor="authorId">Author : </label>
+        <select name="authorId" id="authorId" onChange={handleChange}>
           <option value="">Select Author </option>
           <DisplayAuthors />
         </select>
@@ -56,5 +89,5 @@ function AddingBook() {
     </form>
   );
 }
-// using grahql to bind GETAUTHORS to AddBook component is no more necessary
+// using grahql to bind GETAUTHORS to AddBook component is no more necessary in v3
 export default AddingBook;
