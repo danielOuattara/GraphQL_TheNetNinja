@@ -18,7 +18,7 @@ app.use(
 );
 
 app.use("/", (req, res) => {
-  res.send(200).json({ message: "Successfull" });
+  res.status(200).json({ message: "Successfull" });
 });
 
 //-------------------------------------------------------
