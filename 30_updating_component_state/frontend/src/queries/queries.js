@@ -1,22 +1,24 @@
+import { gql } from "@apollo/client";
 
-import {gql} from "apollo-boost";
-
-const getAuthorsQuery = gql`
-    {
-        authors {
-            name
-            id
-        }
+//--------------------------------------------
+const GETAUTHORS = gql`
+  {
+    authors {
+      name
+      id
     }
-`
+  }
+`;
 
-const getBooksQuery = gql`
-    {
-        books {
-            title
-            id
-        }
+//--------------------------------------------
+const GETBOOKS = gql`
+  {
+    books {
+      title
+      id
     }
-`
+  }
+`;
 
-export {getAuthorsQuery, getBooksQuery}
+//--------------------------------------------
+export { GETAUTHORS, GETBOOKS };
