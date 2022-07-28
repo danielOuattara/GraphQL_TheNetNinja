@@ -1,35 +1,33 @@
+import { gql } from "@apollo/client";
 
-import {gql} from "apollo-boost";
-
-const getAuthorsQuery = gql`
-    {
-        authors {
-            name
-            id
-        }
+//--------------------------------------------
+const GETAUTHORS = gql`
+  {
+    authors {
+      name
+      id
     }
+  }
 `;
 
-const getBooksQuery = gql`
-    {
-        books {
-            title
-            id
-        }
+//--------------------------------------------
+const GETBOOKS = gql`
+  {
+    books {
+      title
+      id
     }
+  }
 `;
 
-const addBookMutation = gql`
-    mutation {
-        addBook(
-            title: "",
-            genre: "",
-            authorId: "",            
-        ) {
-            name
-            id
-        }
+const ADDBOOK_MUTATION = gql`
+  mutation {
+    addBook(title: "", genre: "", pages: "", authorId: "") {
+      title
+      id
     }
+  }
 `;
 
-export {getAuthorsQuery, getBooksQuery, addBookMutation}
+//--------------------------------------------
+export { GETAUTHORS, GETBOOKS, ADDBOOK_MUTATION };
