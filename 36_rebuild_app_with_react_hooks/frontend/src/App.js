@@ -6,6 +6,7 @@ import {
   ApolloProvider,
   gql,
 } from "@apollo/client";
+import AddingBook from "./components/AddingBook";
 //-----------------------------------------------
 
 // appolo client setting up
@@ -40,6 +41,7 @@ function App() {
       <div id="main">
         <h1> Ninja's Reading List </h1>
         <BookList />
+        <AddingBook />
       </div>
     </ApolloProvider>
   );
