@@ -20,5 +20,14 @@ const GETBOOKS = gql`
   }
 `;
 
+const ADDBOOK_MUTATION = gql`
+  mutation {
+    addBook(title: "", genre: "", pages: "", authorId: "") {
+      title
+      id
+    }
+  }
+`;
+
 //--------------------------------------------
-export { GETAUTHORS, GETBOOKS };
+export { GETAUTHORS, GETBOOKS, ADDBOOK_MUTATION };

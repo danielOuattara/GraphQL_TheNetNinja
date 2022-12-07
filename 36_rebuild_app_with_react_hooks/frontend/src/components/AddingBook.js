@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { GETAUTHORS } from "./../queries/queries";
+import { GETAUTHORS, ADDBOOK_MUTATION } from "../queries/queries";
 import { useState } from "react";
+// import { flowRight as compose } from "lodash";
 //--------------------------------------------------------
 
 const DisplayAuthors = () => {
@@ -37,6 +38,10 @@ function AddingBook() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(newBook);
+    this.props
+    .ADDBOOK()
+    .then(() => console.log("Success"))
+    .catch((error) => console.log(error.message));
     setnewBook({ title: "", genre: "", authorId: "", pages: "" });
   };
   return (
@@ -91,3 +96,4 @@ function AddingBook() {
 }
 // using grahql to bind GETAUTHORS to AddBook component is no more necessary in v3
 export default AddingBook;
+
