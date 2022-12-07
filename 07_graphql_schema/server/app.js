@@ -8,7 +8,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     /* schema missing here */
-  })
+  }),
 );
 
 app.listen(4000, () => {
