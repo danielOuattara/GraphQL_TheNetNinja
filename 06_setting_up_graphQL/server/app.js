@@ -4,13 +4,15 @@ const { graphqlHTTP } = require("express-graphql");
 const app = express();
 //--------------------------------------------------
 
+const PORT = 4000;
+
 app.use(
   "/graphql",
   graphqlHTTP({
     /* schema missing here */
-  })
+  }),
 );
 
-app.listen(4000, () => {
-  console.log("Listening on http://localhost:4000/graphql?")
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}/graphql?`);
 });
