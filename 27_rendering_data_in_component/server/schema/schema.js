@@ -13,7 +13,6 @@ const {
 } = graphql;
 //-------------------------------------------------------
 
-
 //-------------------------------------------------------
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -111,7 +110,7 @@ const Mutation = new GraphQLObjectType({
           name: args.name,
           age: args.age,
         });
-        
+
         return author.save();
       },
     },

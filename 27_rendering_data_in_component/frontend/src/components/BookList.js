@@ -6,21 +6,25 @@ import { gql } from "@apollo/client";
 const GETBOOKS = gql`
   {
     books {
-      title
       id
+      title
+      pages
     }
   }
 `;
 
 class BookList extends Component {
   displayBooks = () => {
+    // console.log(this.props);
     let data = this.props.data;
     if (data.loading) {
       return <div>Loading Books ...</div>;
     } else {
-      return data.books.map((book) => {
-        return <li key={book.id}>{book.title}</li>;
-      });
+      return data.books.map((book) => (
+        <li key={book.id}>
+          {book.title} - {book.pages} pages
+        </li>
+      ));
     }
   };
 

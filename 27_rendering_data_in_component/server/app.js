@@ -14,7 +14,7 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
-  })
+  }),
 );
 
 app.use("/", (req, res) => {
@@ -30,7 +30,7 @@ mongoose
   })
   .then(() => {
     console.log(
-      `* * * ! Success: Database connected to:  ${process.env.DATABASE} database * * * `
+      `SUCCESS: Database connected to: ${process.env.DATABASE} database`,
     );
     app.listen(4000, () => {
       console.log("Listening on http://localhost:4000/graphql");
