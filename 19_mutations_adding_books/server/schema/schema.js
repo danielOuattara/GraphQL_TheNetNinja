@@ -109,7 +109,6 @@ const Mutation = new GraphQLObjectType({
         return AuthorModel.create({ name: args.name, age: args.age });
       },
     },
-
     addBook: {
       type: BookType,
       args: {
@@ -128,13 +127,19 @@ const Mutation = new GraphQLObjectType({
       //   });
       //   return book.save();
       // },
+
+      // BACKUP: OK
+      // resolve(parent, args) {
+      //   return BookModel.create({
+      //     title: args.title,
+      //     pages: args.pages,
+      //     genre: args.genre,
+      //     authorId: args.authorId,
+      //   });
+      // },
+
       resolve(parent, args) {
-        return BookModel.create({
-          title: args.title,
-          pages: args.pages,
-          genre: args.genre,
-          authorId: args.authorId,
-        });
+        return BookModel.create(args);
       },
     },
   },
