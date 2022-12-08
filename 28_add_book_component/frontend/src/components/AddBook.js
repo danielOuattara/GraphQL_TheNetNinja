@@ -29,6 +29,7 @@ class AddBook extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <form id="add-book">
         <div className="field">
