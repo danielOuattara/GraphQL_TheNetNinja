@@ -5,8 +5,9 @@ import { gql } from "@apollo/client";
 const GETBOOKS = gql`
   {
     books {
-      title
       id
+      title
+      pages
     }
   }
 `;
