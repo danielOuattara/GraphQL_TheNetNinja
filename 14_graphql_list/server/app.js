@@ -10,7 +10,7 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
-  })
+  }),
 );
 
 app.listen(4000, () => {
