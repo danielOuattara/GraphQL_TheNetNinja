@@ -1,7 +1,6 @@
 const Book = require("./../models/bookModel.js");
 const Author = require("./../models/authorModel.js");
 const graphql = require("graphql");
-const _ = require("lodash");
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -9,7 +8,7 @@ const {
   GraphQLID,
   GraphQLInt,
   GraphQLList,
-  GraphQLNonNull, /* <--- NEW */
+  GraphQLNonNull /* <--- NEW */,
 } = graphql;
 //-------------------------------------------------------
 
@@ -92,12 +91,15 @@ const Mutation = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         age: { type: new GraphQLNonNull(GraphQLInt) },
       },
+      // resolve(parent, args) {
+      //   let author = new Author({
+      //     name: args.name,
+      //     age: args.age,
+      //   });
+      //   return author.save();
+      // },
       resolve(parent, args) {
-        let author = new Author({
-          name: args.name,
-          age: args.age,
-        });
-        return author.save();
+        return Author.create(args);
       },
     },
 
@@ -109,14 +111,17 @@ const Mutation = new GraphQLObjectType({
         authorId: { type: new GraphQLNonNull(GraphQLID) },
         pages: { type: new GraphQLNonNull(GraphQLInt) },
       },
+      // resolve(parent, args) {
+      //   let book = new Book({
+      //     title: args.title,
+      //     pages: args.pages,
+      //     genre: args.genre,
+      //     authorId: args.authorId,
+      //   });
+      //   return book.save();
+      // },
       resolve(parent, args) {
-        let book = new Book({
-          title: args.title,
-          pages: args.pages,
-          genre: args.genre,
-          authorId: args.authorId,
-        });
-        return book.save();
+        return Book.create(args);
       },
     },
   },
