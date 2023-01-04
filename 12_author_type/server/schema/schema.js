@@ -11,9 +11,9 @@ const {
 
 // dummy data
 const books = [
-  { name: "Name of the wind", genre: "Fantasy", id: "1", pages: "230" },
-  { name: "The final empire", genre: "Fantasy", id: "2", pages: "340" },
-  { name: "The long earth", genre: "Sci-Fi", id: "3", pages: "120" },
+  { title: "Name of the wind", genre: "Fantasy", id: "1", pages: "230" },
+  { title: "The final empire", genre: "Fantasy", id: "2", pages: "340" },
+  { title: "The long earth", genre: "Sci-Fi", id: "3", pages: "120" },
 ];
 
 const authors = [

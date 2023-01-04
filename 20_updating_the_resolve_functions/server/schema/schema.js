@@ -110,13 +110,16 @@ const Mutation = new GraphQLObjectType({
         authorId: { type: GraphQLID },
         pages: { type: GraphQLInt },
       },
+      // resolve(parent, args) {
+      //   return BookModel.create({
+      //     title: args.title,
+      //     pages: args.pages,
+      //     genre: args.genre,
+      //     authorId: args.authorId,
+      //   });
+      // },
       resolve(parent, args) {
-        return BookModel.create({
-          title: args.title,
-          pages: args.pages,
-          genre: args.genre,
-          authorId: args.authorId,
-        });
+        return BookModel.create(args);
       },
     },
   },
