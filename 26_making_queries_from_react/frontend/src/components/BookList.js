@@ -3,7 +3,7 @@ import { graphql } from "@apollo/client/react/hoc";
 import { gql } from "@apollo/client";
 //--------------------------------------------------------
 const GETBOOKS = gql`
-  {
+  query GetBooks {
     books {
       id
       title
@@ -25,4 +25,4 @@ class BookList extends Component {
   }
 }
 export default graphql(GETBOOKS)(BookList);
-// use grahql to bind getBookQuery to BookList component
+// use grahql to bind GetBooks query to BookList component

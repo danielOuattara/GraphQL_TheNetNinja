@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 //--------------------------------------------------------
 
 const GETBOOKS = gql`
-  {
+  query GetBooks {
     books {
       title
       id
@@ -14,7 +14,7 @@ const GETBOOKS = gql`
 
 class BookList extends Component {
   displayBooks = () => {
-    let data = this.props.data;
+    const data = this.props.data;
     if (data.loading) {
       return <div>Loading Books ...</div>;
     } else {

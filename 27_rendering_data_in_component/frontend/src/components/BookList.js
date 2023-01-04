@@ -16,7 +16,7 @@ const GETBOOKS = gql`
 class BookList extends Component {
   displayBooks = () => {
     // console.log(this.props);
-    let data = this.props.data;
+    const data = this.props.data;
     if (data.loading) {
       return <div>Loading Books ...</div>;
     } else {
