@@ -1,10 +1,6 @@
 import { Component } from "react";
 import { graphql } from "@apollo/client/react/hoc";
-import {
-  GETAUTHORS,
-  ADDBOOK_MUTATION,
-  GETBOOKS,
-} from "../queries/queries";
+import { GETAUTHORS, ADDBOOK_MUTATION, GETBOOKS } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 //--------------------------------------------------------
 
@@ -60,9 +56,7 @@ class AddBook extends Component {
           <label htmlFor="bookName">Book Title : </label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ title: event.target.value })
-            }
+            onChange={(event) => this.setState({ title: event.target.value })}
           />
         </div>
 
@@ -70,9 +64,7 @@ class AddBook extends Component {
           <label htmlFor="genre">Genre : </label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ genre: event.target.value })
-            }
+            onChange={(event) => this.setState({ genre: event.target.value })}
           />
         </div>
 
@@ -81,9 +73,7 @@ class AddBook extends Component {
           <input
             type="number"
             min="1"
-            onChange={(event) =>
-              this.setState({ pages: event.target.value })
-            }
+            onChange={(event) => this.setState({ pages: event.target.value })}
           />
         </div>
 
@@ -109,5 +99,5 @@ class AddBook extends Component {
 
 export default compose(
   graphql(GETAUTHORS, { name: "GETAUTHORS" }),
-  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK_MUTATION" })
+  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK_MUTATION" }),
 )(AddBook);
