@@ -1,6 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { GETBOOKS } from "./../queries/queries";
+import BookDetails from "./BookDetails";
 //------------------------------------------------------
+
+const [selected, setSelected] = null;
 
 const DisplayBooks = () => {
   const { loading, error, data } = useQuery(GETBOOKS);
@@ -10,7 +13,16 @@ const DisplayBooks = () => {
     return <div>Loading books ...</div>;
   } else {
     return data.books.map((book) => {
-      return <li key={book.id}>{book.title}</li>;
+      return (
+        <li
+          key={book.id}
+          onClick={() => {
+            setSelected({ selected: book.id });
+          }}
+        >
+          {book.title}
+        </li>
+      );
     });
   }
 };
@@ -21,8 +33,12 @@ function BookList() {
       <ul id="book-list">
         <DisplayBooks />
       </ul>
+      <BookDetails bookId={selected} />
     </div>
   );
 }
-// using grahql to bind GETBOOKS to BockList component is no more necessary
 export default BookList;
+
+/* Using grahql to bind GETBOOKS to BockList component 
+is no more necessary using useQuery 
+*/

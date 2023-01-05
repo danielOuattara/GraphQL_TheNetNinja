@@ -1,11 +1,6 @@
 import "./App.css";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import BookList from "./components/BookList";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  // gql,
-} from "@apollo/client";
 import AddingBook from "./components/AddingBook";
 //-----------------------------------------------
 
@@ -15,7 +10,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// direct testing
+/* direct testing 
+------------------*/
 // client
 //   .query({
 //     query: gql`
@@ -32,10 +28,10 @@ const client = new ApolloClient({
 //     `,
 //   })
 
-//   .then((result) => console.log(result));
+//   .then((result) => console.log(result))
 
 //------------------------------------------------
-function App() {
+export default function App() {
   return (
     <ApolloProvider client={client}>
       <div id="main">
@@ -46,5 +42,3 @@ function App() {
     </ApolloProvider>
   );
 }
-
-export default App;

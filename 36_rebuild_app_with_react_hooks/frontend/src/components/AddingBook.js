@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
-import { GETAUTHORS, ADDBOOK_MUTATION } from "../queries/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { GETAUTHORS, GETBOOKS, ADDBOOK_MUTATION } from "../queries/queries";
 import { useState } from "react";
 // import { flowRight as compose } from "lodash";
 //--------------------------------------------------------
@@ -21,7 +21,7 @@ const DisplayAuthors = () => {
   }
 };
 
-function AddingBook() {
+function AddingBook(props) {
   const [newBook, setnewBook] = useState({
     title: "",
     genre: "",
@@ -35,38 +35,38 @@ function AddingBook() {
     setnewBook({ ...newBook, [name]: value }); // gathering person data from inputs
   };
 
+  const [addBook, { data, loading, error }] = useMutation(ADDBOOK_MUTATION, {
+    refetchQueries: [{ query: GETBOOKS }],
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newBook);
-    this.props
-    .ADDBOOK()
-    .then(() => console.log("Success"))
-    .catch((error) => console.log(error.message));
-    setnewBook({ title: "", genre: "", authorId: "", pages: "" });
+    console.log("newBook = ", newBook);
+    addBook({
+      variables: {
+        title: newBook.title,
+        genre: newBook.genre,
+        pages: Number(newBook.pages),
+        authorId: newBook.authorId,
+      },
+    })
+      .then(() => console.log("Success"))
+      .catch((error) => console.log(error.message));
+    setnewBook(() => ({ title: "", genre: "", authorId: "", pages: "" }));
   };
   return (
     <form id="add-book" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="title">
           Title :
-          <input
-            type="text"
-            id="title"
-            name="title"
-            onChange={handleChange}
-          />
+          <input type="text" id="title" name="title" onChange={handleChange} />
         </label>
       </div>
 
       <div className="field">
         <label htmlFor="genre">
           Genre :
-          <input
-            type="text"
-            id="genre"
-            name="genre"
-            onChange={handleChange}
-          />
+          <input type="text" id="genre" name="genre" onChange={handleChange} />
         </label>
       </div>
 
@@ -96,4 +96,3 @@ function AddingBook() {
 }
 // using grahql to bind GETAUTHORS to AddBook component is no more necessary in v3
 export default AddingBook;
-
