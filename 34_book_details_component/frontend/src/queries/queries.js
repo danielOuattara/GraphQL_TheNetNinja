@@ -23,18 +23,8 @@ const GETBOOKS = gql`
 //--------------------------------------------
 // query variable in mutation below, starting with $ sign
 const ADDBOOK_MUTATION = gql`
-  mutation (
-    $title: String!
-    $genre: String!
-    $authorId: ID!
-    $pages: Int!
-  ) {
-    addBook(
-      title: $title
-      genre: $genre
-      authorId: $authorId
-      pages: $pages
-    ) {
+  mutation ($title: String!, $genre: String!, $authorId: ID!, $pages: Int!) {
+    addBook(title: $title, genre: $genre, authorId: $authorId, pages: $pages) {
       id
       title
       pages
