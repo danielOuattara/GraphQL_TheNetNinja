@@ -15,7 +15,7 @@ class AddBook extends Component {
   }
 
   displayAuthor = () => {
-    let data = this.props.data;
+    const data = this.props.data;
     if (data.loading) {
       return <option disabled>Loading Books ...</option>;
     } else {
@@ -32,6 +32,7 @@ class AddBook extends Component {
   submitForm = (event) => {
     event.preventDefault();
     console.log(this.state);
+    this.setState({ title: "", genre: "", authorId: "" });
   };
 
   render() {
@@ -42,9 +43,7 @@ class AddBook extends Component {
             Book Title :
             <input
               type="text"
-              onChange={(event) =>
-                this.setState({ title: event.target.value })
-              }
+              onChange={(event) => this.setState({ title: event.target.value })}
               required
               value={this.state.title}
             />
@@ -56,9 +55,7 @@ class AddBook extends Component {
             Genre :
             <input
               type="text"
-              onChange={(event) =>
-                this.setState({ genre: event.target.value })
-              }
+              onChange={(event) => this.setState({ genre: event.target.value })}
               required
               value={this.state.genre}
             />
