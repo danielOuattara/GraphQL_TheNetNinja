@@ -13,7 +13,7 @@ class AddingBook extends Component {
       authorId: "",
       pages: "",
     };
-    this.submitForm = this.submitForm.bind(this)
+    this.submitForm = this.submitForm.bind(this);
   }
 
   displayAuthor = () => {
@@ -55,9 +55,7 @@ class AddingBook extends Component {
           <label htmlFor="bookName">Book Title : </label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ title: event.target.value })
-            }
+            onChange={(event) => this.setState({ title: event.target.value })}
           />
         </div>
 
@@ -65,9 +63,7 @@ class AddingBook extends Component {
           <label htmlFor="genre">Genre : </label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ genre: event.target.value })
-            }
+            onChange={(event) => this.setState({ genre: event.target.value })}
           />
         </div>
 
@@ -76,9 +72,7 @@ class AddingBook extends Component {
           <input
             type="number"
             min="1"
-            onChange={(event) =>
-              this.setState({ pages: event.target.value })
-            }
+            onChange={(event) => this.setState({ pages: event.target.value })}
           />
         </div>
 
@@ -104,5 +98,5 @@ class AddingBook extends Component {
 
 export default compose(
   graphql(GETAUTHORS, { name: "GETAUTHORS" }),
-  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK_MUTATION" })
+  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK_MUTATION" }),
 )(AddingBook);
