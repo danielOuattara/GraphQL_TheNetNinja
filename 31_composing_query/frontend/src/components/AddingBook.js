@@ -16,8 +16,8 @@ class AddingBook extends Component {
   }
 
   displayAuthor = () => {
-    // console.log("this.props = ", this.props)
-    let data = this.props.GETAUTHORS;
+    console.log("this.props = ", this.props);
+    const data = this.props.GETAUTHORS_QUERY;
     if (data.loading) {
       return <option disabled>Loading Books ...</option>;
     } else {
@@ -35,7 +35,7 @@ class AddingBook extends Component {
     event.preventDefault();
     // console.log(this.state);
     this.props
-      .ADDBOOK()
+      .ADDBOOK_MUTATION()
       .then(() => console.log("Success"))
       .catch((error) => console.log(error.message));
   };
@@ -47,9 +47,7 @@ class AddingBook extends Component {
           <label htmlFor="bookName">Book Title : </label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ title: event.target.value })
-            }
+            onChange={(event) => this.setState({ title: event.target.value })}
           />
         </div>
 
@@ -60,6 +58,14 @@ class AddingBook extends Component {
             onChange={(event) =>
               this.setState({ genre: Number(event.target.value) })
             }
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="pages">Pages : </label>
+          <input
+            type="number"
+            onChange={(event) => this.setState({ pages: event.target.value })}
           />
         </div>
 
@@ -77,16 +83,6 @@ class AddingBook extends Component {
           </select>
         </div>
 
-        <div className="field">
-          <label htmlFor="pages">Pages : </label>
-          <input
-            type="number"
-            onChange={(event) =>
-              this.setState({ pages: event.target.value })
-            }
-          />
-        </div>
-
         <button> Add </button>
       </form>
     );
@@ -94,6 +90,6 @@ class AddingBook extends Component {
 }
 
 export default compose(
-  graphql(GETAUTHORS, { name: "GETAUTHORS" }),
-  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK" })
+  graphql(GETAUTHORS, { name: "GETAUTHORS_QUERY" }),
+  graphql(ADDBOOK_MUTATION, { name: "ADDBOOK_MUTATION" }),
 )(AddingBook);
