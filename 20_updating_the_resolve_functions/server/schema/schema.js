@@ -98,7 +98,7 @@ const Mutation = new GraphQLObjectType({
         age: { type: GraphQLInt },
       },
       resolve(parent, args) {
-        return AuthorModel.create({ name: args.name, age: args.age });
+        return AuthorModel.create(args);
       },
     },
 
@@ -110,14 +110,7 @@ const Mutation = new GraphQLObjectType({
         authorId: { type: GraphQLID },
         pages: { type: GraphQLInt },
       },
-      // resolve(parent, args) {
-      //   return BookModel.create({
-      //     title: args.title,
-      //     pages: args.pages,
-      //     genre: args.genre,
-      //     authorId: args.authorId,
-      //   });
-      // },
+
       resolve(parent, args) {
         return BookModel.create(args);
       },
