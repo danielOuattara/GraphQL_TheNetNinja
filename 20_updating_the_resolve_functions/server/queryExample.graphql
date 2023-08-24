@@ -1,7 +1,0 @@
-mutation {
-addBook(title:"test title", genre:"test genre", authorId:"test id", pages: 234){
-  title
-  genre
-  pages
-  }
-}

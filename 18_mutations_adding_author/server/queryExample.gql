@@ -1,6 +1,0 @@
-mutation {
-  addAuthor(name: "John", age: 23){
-    name
-    age
-  }
-}
